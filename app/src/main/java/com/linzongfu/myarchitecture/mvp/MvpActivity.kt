@@ -10,8 +10,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import com.linzongfu.myarchitecture.R
 import com.linzongfu.myarchitecture.databinding.ActivityMvpBinding
-import com.linzongfu.myarchitecture.mvc.MvcAdapter
-import com.linzongfu.myarchitecture.mvc.MvcRecord
 
 /**
  * @desc   在 MVP 架构中,Activity 作为 view 层处理页面变化, Presenter 页面作为 p 层处理业务逻辑, Model 作为 model 层
@@ -44,11 +42,11 @@ class MvpActivity : AppCompatActivity() {
         }
     }
 
-    public fun showError(error: String) {
+    fun showError(error: String) {
         Snackbar.make(binding.etAccount, error, Snackbar.LENGTH_SHORT).show()
     }
 
-    public fun showLoginSucceed() {
+    fun showLoginSucceed() {
         if (llSucceed == null) {
             inflateViewStub()
             initRecycler()

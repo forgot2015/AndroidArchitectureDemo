@@ -16,6 +16,8 @@ import com.linzongfu.myarchitecture.databinding.ActivityMvcBinding
  * @desc   在 MVC 架构中,Activity 作为 controller 层, layout 页面作为 view 层, Model 作为 model 层
  * 使用 ViewBinding来替换 findViewById,不必再用 ButterKnife 或者 Kotlin Extension了
  * 与 DataBinding 相比,ViewBinding 加载页面更快,但缺点是没法实现数据绑定
+ * 总结,如果是写 MVP 架构的话,用 ViewBinding 即可; 如果是写 MVVM 架构,就要用 DataBinding,
+ * 部分不用到数据绑定的页面也可以用 ViewBinding
  * @author zongfulin
  * @date   4/25/21 10:45 AM
  */
@@ -35,16 +37,16 @@ class MvcActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
+        model = MvcModel()
+
         val includeTitle = binding.includeTitle.tvTitle
-        includeTitle.text = "运用了 ViewBinding 的 MVC 架构"
+        includeTitle.text = "用了 ViewBinding 与 include 标签的 MVC 架构"
 
         binding.btnLogin.setOnClickListener {
             val account = binding.etAccount.text.toString().trim()
             val password = binding.etPassword.text.toString().trim()
             tryLogin(account, password)
         }
-
-        model = MvcModel()
     }
 
     private fun tryLogin(account: String, password: String) {

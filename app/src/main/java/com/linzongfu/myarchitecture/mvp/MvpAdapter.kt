@@ -36,7 +36,7 @@ class MvpAdapter(var list: List<MvpRecord>) : RecyclerView.Adapter<MvpAdapter.Vi
         return list.size
     }
 
-    public class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var tvDate: TextView = itemView.findViewById(R.id.tvDate)
         var tvEvent: TextView = itemView.findViewById(R.id.tvEvent)
     }

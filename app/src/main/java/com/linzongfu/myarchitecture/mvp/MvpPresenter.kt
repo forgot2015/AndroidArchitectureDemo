@@ -9,13 +9,9 @@ import android.text.TextUtils
  * Description:
  */
 class MvpPresenter(var view: MvpActivity) {
-    private var model: MvpModel
+    private var model: MvpModel = MvpModel()
 
-    init {
-        model = MvpModel()
-    }
-
-    public fun tryLogin(account: String, password: String) {
+    fun tryLogin(account: String, password: String) {
         if (!isAccountValid(account)) {
             view.showError("账号非法")
             return
@@ -35,7 +31,7 @@ class MvpPresenter(var view: MvpActivity) {
     private fun isPasswordValid(password: String): Boolean =
         !TextUtils.isEmpty(password) && password.length >= 6
 
-    public fun loadRecyclerData() {
+    fun loadRecyclerData() {
         view.loadRecyclerData(model.getRecordList())
     }
 }

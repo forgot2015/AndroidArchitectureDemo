@@ -4,9 +4,11 @@
 
     <data>
 
+        <import type="com.linzongfu.myarchitecture.mvvm.User" />
+
         <variable
             name="user"
-            type="com.linzongfu.myarchitecture.mvvm.User" />
+            type="User" />
 
         <variable
             name="account"
@@ -43,12 +45,28 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
-                android:layout_width="100dp"
-                android:layout_height="30dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="200dp"
                 android:gravity="center"
-                android:text="@{utils.doSomething()}"
+                android:text="@{utils.INSTANCE.doSomething(account)}"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="@{String.valueOf(1)}"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="@{isNight ? utils.INSTANCE.student : utils.INSTANCE.other}"
                 android:textColor="@color/black" />
 
             <EditText

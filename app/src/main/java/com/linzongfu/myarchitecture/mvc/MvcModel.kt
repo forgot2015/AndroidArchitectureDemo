@@ -1,6 +1,5 @@
 package com.linzongfu.myarchitecture.mvc
 
-import android.text.TextUtils
 import android.util.Log
 
 /**

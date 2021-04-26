@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyArchitecture">
-        <activity android:name=".MainActivity">
+        <activity
+            android:name=".MainActivity"
+            android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -18,13 +20,16 @@
         </activity>
         <activity
             android:name=".mvc.MvcActivity"
-            android:label="MvcActivity" />
+            android:label="MvcActivity"
+            android:launchMode="singleTop" />
         <activity
             android:name=".mvp.MvpActivity"
-            android:label="MvpActivity" />
+            android:label="MvpActivity"
+            android:launchMode="singleTop" />
         <activity
             android:name=".mvvm.MvvmActivity"
-            android:label="MvvmActivity" />
+            android:label="MvvmActivity"
+            android:launchMode="singleTop" />
 
     </application>
 

@@ -15,7 +15,7 @@ import com.linzongfu.myarchitecture.databinding.ActivityMvvmBinding
 
 /**
  * @desc   在 MVVM 架构中,Activity 作为 view 层处理页面变化, ViewModel 页面作为 VM 层处理业务逻辑, Model 作为 M 层
- *
+ * 使用了 DataBinding
  * @author zongfulin
  * @date   4/25/21 4:39 PM
  */
@@ -33,6 +33,7 @@ class MvvmActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_mvvm)
         binding.isNight = true
         binding.account = "default"
+//        binding.account = null  //会奔溃
 
         viewModel = MvvmViewModel(this)
 
@@ -40,6 +41,7 @@ class MvvmActivity : AppCompatActivity() {
             Log.e(TAG, "account =${binding.account},password = ${binding.password}")
             viewModel.tryLogin(binding.account, binding.password)
         }
+
     }
 
     public fun showError(error: String) {
