@@ -3,12 +3,15 @@ package com.linzongfu.myarchitecture.mvp
 import android.os.Bundle
 import android.view.View
 import android.view.ViewStub
-import android.widget.Button
-import android.widget.EditText
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import com.linzongfu.myarchitecture.R
+import com.linzongfu.myarchitecture.databinding.ActivityMvpBinding
+import com.linzongfu.myarchitecture.mvc.MvcAdapter
+import com.linzongfu.myarchitecture.mvc.MvcRecord
 
 /**
  * @desc   在 MVP 架构中,Activity 作为 view 层处理页面变化, Presenter 页面作为 p 层处理业务逻辑, Model 作为 model 层
@@ -17,54 +20,64 @@ import com.linzongfu.myarchitecture.R
  * @date   4/25/21 11:11 AM
  */
 class MvpActivity : AppCompatActivity() {
-    
-    lateinit var llLogin: LinearLayout
-    lateinit var etAccount: EditText
-    lateinit var etPassword: EditText
-    lateinit var btnLogin: Button
 
-    var llSucceed: LinearLayout? = null
+    private lateinit var binding: ActivityMvpBinding
 
-    lateinit var presenter: MvpPresenter
+    private lateinit var presenter: MvpPresenter
+
+    private var llSucceed: LinearLayout? = null
+    private lateinit var rvRecord: RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_mvp)
+//        使用 ViewBinding
+        binding = ActivityMvpBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
 
         presenter = MvpPresenter(this)
 
-        llLogin = findViewById(R.id.llLogin)
-        etAccount = findViewById(R.id.etAccount)
-        etPassword = findViewById(R.id.etPassword)
-        btnLogin = findViewById(R.id.btnLogin)
-
-        btnLogin.setOnClickListener {
-            val account = etAccount.text.toString().trim()
-            val password = etPassword.text.toString().trim()
+        binding.btnLogin.setOnClickListener {
+            val account = binding.etAccount.text.toString().trim()
+            val password = binding.etPassword.text.toString().trim()
             presenter.tryLogin(account, password)
         }
     }
 
     public fun showError(error: String) {
-        Snackbar.make(etAccount, error, Snackbar.LENGTH_SHORT).show()
+        Snackbar.make(binding.etAccount, error, Snackbar.LENGTH_SHORT).show()
     }
 
     public fun showLoginSucceed() {
         if (llSucceed == null) {
             inflateViewStub()
+            initRecycler()
+            presenter.loadRecyclerData()
         }
 
-        llLogin.visibility = View.INVISIBLE
+        binding.llLogin.visibility = View.INVISIBLE
         llSucceed?.visibility = View.VISIBLE
     }
 
     private fun inflateViewStub() {
         try {
             val vsSucceed = findViewById<ViewStub>(R.id.vsSucceed)
-            llSucceed = vsSucceed.inflate() as LinearLayout
+            val view = vsSucceed.inflate()
+            llSucceed = view.findViewById(R.id.llSucceed)
+            rvRecord = view.findViewById(R.id.rvRecord)
         } catch (e: Exception) {
             e.printStackTrace()
         }
+    }
+
+    private fun initRecycler() {
+        rvRecord.adapter = MvpAdapter(ArrayList())
+        rvRecord.layoutManager = LinearLayoutManager(this)
+    }
+
+    fun loadRecyclerData(list: List<MvpRecord>) {
+        val adapter = rvRecord.adapter as MvpAdapter
+        adapter.replaceList(list)
     }
 
 }

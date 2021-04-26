@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    tools:viewBindingIgnore="true"
+    android:layout_height="match_parent">
+
+    <Button
+        android:id="@+id/ButtonToInclude"
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        android:background="@color/teal_200"
+        android:text="Button is under merge tag"
+        android:textColor="#fff"
+        android:textSize="18sp"
+        android:textStyle="italic" />
+
+    <ImageView
+        android:id="@+id/imageViewToInclude"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:src="@drawable/ic_user" />
+</merge>

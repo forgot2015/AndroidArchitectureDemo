@@ -1,6 +1,7 @@
 package com.linzongfu.myarchitecture.mvp
 
 import android.text.TextUtils
+import android.util.Log
 
 /**
  * @author zongfulin
@@ -9,7 +10,15 @@ import android.text.TextUtils
  * Description:
  */
 class MvpModel {
-    fun isAccountValid(account: String): Boolean = !TextUtils.isEmpty(account) && account.length >= 6
-    fun isPasswordValid(password: String): Boolean =
-        !TextUtils.isEmpty(password) && password.length >= 6
+    val TAG = "MvpModel"
+
+    fun getRecordList(): List<MvpRecord> {
+        val list = ArrayList<MvpRecord>()
+        for (index in 0..5) {
+            val record = MvpRecord("MVP 3 月 $index 日", "消费了 $index 元")
+            list.add(record)
+        }
+        Log.e(TAG, list.toString())
+        return list
+    }
 }

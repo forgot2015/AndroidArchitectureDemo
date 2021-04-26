@@ -26,4 +26,8 @@ class MvvmViewModel(var view: MvvmActivity) {
 
         view.showLoginSucceed()
     }
+
+    public fun loadRecyclerData() {
+        view.loadRecyclerData(model.getRecordList())
+    }
 }

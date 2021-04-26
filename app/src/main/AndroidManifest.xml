@@ -9,9 +9,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyArchitecture">
-        <activity android:name=".mvvm.MvvmActivity"></activity>
-        <activity android:name=".mvp.MvpActivity" />
-        <activity android:name=".mvc.MvcActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,6 +16,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".mvc.MvcActivity"
+            android:label="MvcActivity" />
+        <activity
+            android:name=".mvp.MvpActivity"
+            android:label="MvpActivity" />
+        <activity
+            android:name=".mvvm.MvvmActivity"
+            android:label="MvvmActivity" />
+
     </application>
 
 </manifest>

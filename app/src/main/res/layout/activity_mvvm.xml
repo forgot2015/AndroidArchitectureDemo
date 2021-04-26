@@ -15,12 +15,21 @@
         <variable
             name="password"
             type="String" />
+
+        <variable
+            name="isNight"
+            type="Boolean" />
+
+        <variable
+            name="utils"
+            type="com.linzongfu.myarchitecture.mvvm.TransformUtils" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@{isNight?@color/blue_200:@color/white}"
         tools:context=".mvvm.MvvmActivity">
 
         <LinearLayout
@@ -34,11 +43,13 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="100dp"
+                android:layout_height="30dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="200dp"
-                android:text="MVVM 架构" />
+                android:gravity="center"
+                android:text="@{utils.doSomething()}"
+                android:textColor="@color/black" />
 
             <EditText
                 android:id="@+id/etAccount"
@@ -46,6 +57,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:hint="请输入账号"
+                android:inputType="number"
                 android:text="@={account}" />
 
             <EditText
@@ -54,6 +66,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:hint="请输入密码"
+                android:inputType="textPassword"
                 android:text="@={password}" />
 
             <Button

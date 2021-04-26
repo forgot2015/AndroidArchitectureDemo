@@ -14,4 +14,13 @@ class MvvmModel {
 
     fun isPasswordValid(password: String?): Boolean =
         !TextUtils.isEmpty(password) && password!!.length >= 6
+
+    fun getRecordList(): List<MvvmRecord> {
+        val list = ArrayList<MvvmRecord>()
+        for (index in 0..5) {
+            val record = MvvmRecord("MVVM 3 月 $index 日", "消费了 $index 元")
+            list.add(record)
+        }
+        return list
+    }
 }
