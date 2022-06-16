@@ -1,6 +1,7 @@
 package com.linzongfu.myarchitecture.mvc
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -35,15 +36,24 @@ class MvcAdapter(var list: List<MvcRecord>) : RecyclerView.Adapter<MvcAdapter.Vi
         val item = list[position]
         holder.tvDate.text = item.date
         holder.tvEvent.text = item.event
+        with(holder){
+            binding.tvDate
+        }
     }
 
     override fun getItemCount(): Int {
         return list.size
     }
 
-    public class ViewHolder(binding: RecyclerItemRecordBinding) :
-        RecyclerView.ViewHolder(binding.root) {
-        var tvDate: TextView = binding.tvDate
-        var tvEvent: TextView = binding.tvEvent
+//    class ViewHolder(binding: RecyclerItemRecordBinding) :
+//        RecyclerView.ViewHolder(binding.root) {
+//        var tvDate: TextView = binding.tvDate
+//        var tvEvent: TextView = binding.tvEvent
+//    }
+
+    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        val binding = RecyclerItemRecordBinding.bind(view)
+//        var tvDate: TextView = binding.tvDate
+//        var tvEvent: TextView = binding.tvEvent
     }
 }

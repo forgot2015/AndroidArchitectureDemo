@@ -33,8 +33,8 @@ android {
     }
 
     buildFeatures {
-        viewBinding true
-        dataBinding true
+        viewBinding true  //视图绑定
+        dataBinding true  //数据绑定
     }
 }
 
@@ -50,4 +50,6 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
     kapt "com.android.databinding:compiler:$gradle_version" //dataBinding 需要
+
+
 }

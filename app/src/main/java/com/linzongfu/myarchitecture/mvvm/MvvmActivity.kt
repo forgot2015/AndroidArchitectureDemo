@@ -40,6 +40,8 @@ class MvvmActivity : AppCompatActivity() {
         binding.btnLogin.setOnClickListener {
             Log.e(TAG, "account =${binding.account},password = ${binding.password}")
             viewModel.tryLogin(binding.account, binding.password)
+
+            binding.account = "new click"
         }
 
     }
